@@ -3,15 +3,11 @@ package com.example;
 import static java.lang.System.out;
 
 import java.io.IOException;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-
 import com.example.pojo.Person;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,8 +16,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CalssworkApplication {
 
 	private static ObjectMapper mapper;
-	
-	private static CalssworkApplication app;
 	
 	@Autowired
 	public void setMapper(ObjectMapper mapper) {
