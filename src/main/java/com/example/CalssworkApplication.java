@@ -19,10 +19,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootApplication
 public class CalssworkApplication {
 
-	@Autowired
-	private ObjectMapper mapper;
+	private static ObjectMapper mapper;
 	
 	private static CalssworkApplication app;
+	
+	@Autowired
+	public void setMapper(ObjectMapper mapper) {
+		this.mapper = mapper;
+	}
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(CalssworkApplication.class, args);
@@ -32,13 +36,13 @@ public class CalssworkApplication {
 		me.setAge(18);
 		me.setName("heheda");
 		try {
-			out.println(app.mapper.writeValueAsString(me));
+			out.println(mapper.writeValueAsString(me));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		String json = "{\"name\":\"Daniel\",\"age\":22}";
 		try {
-			Person p2 = app.mapper.readValue(json, Person.class);
+			Person p2 = mapper.readValue(json, Person.class);
 			out.println(p2);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -49,11 +53,5 @@ public class CalssworkApplication {
 	public ObjectMapper mapper() {
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper;
-	}
-	
-	@PostConstruct
-	public void init() {
-		app = this;
-		app.mapper = this.mapper;
 	}
 }
